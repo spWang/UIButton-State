@@ -18,7 +18,6 @@
 #import "UIButton+HCBState.h"
 #import <objc/runtime.h>
 
-static char *subViewTag = "subViewTag";
 
 //Model
 @interface HCBPropertyModel : NSObject
