@@ -68,6 +68,7 @@
             [button hcb_setBackgroundColor:[UIColor redColor] forState:UIControlStateNormal animated:YES];
             [button hcb_setBackgroundColor:[UIColor blueColor] forState:UIControlStateSelected animated:YES];
             [button setTitle:@"背景颜色有动画" forState:UIControlStateNormal];
+            button.hcb_animatedDuration = 0.5;
         }
             break;
             

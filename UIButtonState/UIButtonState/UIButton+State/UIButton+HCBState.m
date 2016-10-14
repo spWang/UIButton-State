@@ -18,6 +18,8 @@
 #import "UIButton+HCBState.h"
 #import <objc/runtime.h>
 
+static char *subViewTag = "subViewTag";
+
 //Model
 @interface HCBPropertyModel : NSObject
 @property (nonatomic, assign) UIControlState state;
@@ -314,7 +316,7 @@
 }
 
 - (void)setHcb_animatedDuration:(NSTimeInterval)hcb_animatedDuration {
-    objc_setAssociatedObject(self, @selector(hcb_animatedDuration), @(hcb_animatedDuration), OBJC_ASSOCIATION_ASSIGN);
+    objc_setObjRETAIN(@selector(hcb_animatedDuration), @(hcb_animatedDuration));
 }
 
 - (NSTimeInterval)hcb_animatedDuration {
@@ -339,7 +341,7 @@
 }
 
 -(void)setSubViewTag:(NSInteger)subViewTag {
-    objc_setAssociatedObject(self, @selector(subViewTag), @(subViewTag), OBJC_ASSOCIATION_ASSIGN);
+    objc_setObjRETAIN(@selector(subViewTag), @(subViewTag));
 }
 
 - (NSInteger)subViewTag {
