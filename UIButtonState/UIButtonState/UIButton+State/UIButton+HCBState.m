@@ -217,7 +217,7 @@
     
     //updateSubViewProperty
     UIView *subView = [self viewWithTag:self.subViewTag];
-    if (subView) {
+    if (subView && self.subViewPropertyArr.count>0) {
         [self.subViewPropertyArr enumerateObjectsUsingBlock:^(HCBPropertyModel * _Nonnull model, NSUInteger idx, BOOL * _Nonnull stop) {
             //点击一次,方法多次调用,model.value可能为nil,此时不应进入赋值,否则覆盖掉之前的值
             if (self.state == model.state && model.value) {
