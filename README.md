@@ -78,8 +78,6 @@
 # UIButton-State
 a easy way to config your button with different backgroundColor、borderColor and titleLabelFont
 
-<img src="https://github.com/spWang/UIButton-State/blob/master/demo.gif" width="375" height="667">
-
 ## <a id="How to use it"></a>How to use it
 * Installation with CocoaPods：`pod 'UIButtonState'`
 * Manual import：
