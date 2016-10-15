@@ -69,10 +69,11 @@
 5. [button hcb_configBackgroundColors:@{@(UIControlStateNormal) : [UIColor redColor], @(UIControlStateSelected) : [UIColor blueColor]}];
 
 
-## Remind
+## <a id="Remind"></a>Remind
 * ARC
 * iOS>=6.0
 
+# for English
 
 # UIButton-State
 a easy way to config your button with different backgroundColor、borderColor and titleLabelFont
