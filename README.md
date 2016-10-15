@@ -63,10 +63,14 @@
 ## <a id="例子"></a>例子
 ```objc
 1. [button hcb_setBackgroundColor:[UIColor redColor] forState:UIControlStateNormal animated:YES];
+
 2. button.layer.borderWidth = 10;
 [button hcb_setborderColor:[UIColor purpleColor] forState:UIControlStateNormal animated:YES];
+
 3. [button hcb_setTitleLabelFont:[UIFont systemFontOfSize:10] forState:UIControlStateNormal];
+
 4. [button hcb_setSubViewValue:@(NSTextAlignmentLeft) forKeyPath:@"textAlignment" forState:UIControlStateNormal withSubViewTag:10001];
+
 5. [button hcb_configBackgroundColors:@{@(UIControlStateNormal) : [UIColor redColor], @(UIControlStateSelected) : [UIColor blueColor]}];
 ```
 
@@ -143,10 +147,14 @@ a easy way to config your button with different backgroundColor、borderColor an
 ## <a id="for example"></a>for example
 ```objc
 1. [button hcb_setBackgroundColor:[UIColor redColor] forState:UIControlStateNormal animated:YES];
+
 2. button.layer.borderWidth = 10;
 [button hcb_setborderColor:[UIColor purpleColor] forState:UIControlStateNormal animated:YES];
+
 3. [button hcb_setTitleLabelFont:[UIFont systemFontOfSize:10] forState:UIControlStateNormal];
+
 4. [button hcb_setSubViewValue:@(NSTextAlignmentLeft) forKeyPath:@"textAlignment" forState:UIControlStateNormal withSubViewTag:10001];
+
 5. [button hcb_configBackgroundColors:@{@(UIControlStateNormal) : [UIColor redColor], @(UIControlStateSelected) : [UIColor blueColor]}];
 ```
 
@@ -157,6 +165,4 @@ a easy way to config your button with different backgroundColor、borderColor an
 ```
 
 ## <a id="Hope"></a>Hope
-```objc
 * If you find bug when used，Hope you can Issues me，Thank you or try to download the latest code of this extension to see the BUG has been fixed or not
-```
