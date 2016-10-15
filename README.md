@@ -10,7 +10,6 @@
 * 导入头文件：`#import "UIButton+HCBState.h"`
 
 ## <a id="UIButton+HCBState.h"></a>UIButton+HCBState.h
-```objc
 @interface UIButton (HCBState)
 /** 获取当前borderColor */
 @property(nullable, nonatomic, readonly, strong) UIColor *hcb_currentBorderColor;
@@ -61,7 +60,6 @@
 @end
 
 ## <a id="例子"></a>例子
-```objc
 1. [button hcb_setBackgroundColor:[UIColor redColor] forState:UIControlStateNormal animated:YES];
 2. button.layer.borderWidth = 10;
 [button hcb_setborderColor:[UIColor purpleColor] forState:UIControlStateNormal animated:YES];
@@ -71,7 +69,6 @@
 
 
 ## <a id="Remind"></a>Remind
-```objc
 * ARC
 * iOS>=6.0
 
@@ -81,14 +78,12 @@
 a easy way to config your button with different backgroundColor、borderColor and titleLabelFont
 
 ## <a id="How to use it"></a>How to use it
-```objc
 * Installation with CocoaPods：`pod 'UIButtonState'`
 * Manual import：
 * Drag All files in the `UIButton+State` folder to project
 * Import the file：`#import "UIButton+HCBState.h"`
 
 ## <a id="UIButton+HCBState.h"></a>UIButton+HCBState.h
-```objc
 @interface UIButton (HCBState)
 /** get the current borderColor */
 @property(nullable, nonatomic, readonly, strong) UIColor *hcb_currentBorderColor;
@@ -138,7 +133,6 @@ a easy way to config your button with different backgroundColor、borderColor an
 @end
 
 ## <a id="for example"></a>for example
-```objc
 1. [button hcb_setBackgroundColor:[UIColor redColor] forState:UIControlStateNormal animated:YES];
 2. button.layer.borderWidth = 10;
 [button hcb_setborderColor:[UIColor purpleColor] forState:UIControlStateNormal animated:YES];
@@ -148,10 +142,8 @@ a easy way to config your button with different backgroundColor、borderColor an
 
 
 ## Remind
-```objc
 * ARC
 * iOS>=6.0
 
 ## <a id="Hope"></a>Hope
-```objc
 * If you find bug when used，Hope you can Issues me，Thank you or try to download the latest code of this extension to see the BUG has been fixed or not
