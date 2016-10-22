@@ -62,15 +62,20 @@
 ```
 ## <a id="例子"></a>例子
 ```objc
+//setBackgroundColor
 1. [button hcb_setBackgroundColor:[UIColor redColor] forState:UIControlStateNormal animated:YES];
 
+//setborderColor
 2. button.layer.borderWidth = 10;
 [button hcb_setborderColor:[UIColor purpleColor] forState:UIControlStateNormal animated:YES];
 
+//setTitleLabelFont
 3. [button hcb_setTitleLabelFont:[UIFont systemFontOfSize:10] forState:UIControlStateNormal];
 
+//配置SubView
 4. [button hcb_setSubViewValue:@(NSTextAlignmentLeft) forKeyPath:@"textAlignment" forState:UIControlStateNormal withSubViewTag:10001];
 
+//使用key-Value方案来配置
 5. [button hcb_configBackgroundColors:@{@(UIControlStateNormal) : [UIColor redColor], @(UIControlStateSelected) : [UIColor blueColor]}];
 ```
 
@@ -79,6 +84,7 @@
 * ARC
 * iOS>=6.0
 ```
+
 
 # for English
 
@@ -146,15 +152,20 @@ a easy way to config your button with different backgroundColor、borderColor an
 
 ## <a id="for example"></a>for example
 ```objc
+//setBackgroundColor
 1. [button hcb_setBackgroundColor:[UIColor redColor] forState:UIControlStateNormal animated:YES];
 
+//setborderColor
 2. button.layer.borderWidth = 10;
 [button hcb_setborderColor:[UIColor purpleColor] forState:UIControlStateNormal animated:YES];
 
+//setTitleLabelFont
 3. [button hcb_setTitleLabelFont:[UIFont systemFontOfSize:10] forState:UIControlStateNormal];
 
+//set SubView use key-Value 
 4. [button hcb_setSubViewValue:@(NSTextAlignmentLeft) forKeyPath:@"textAlignment" forState:UIControlStateNormal withSubViewTag:10001];
 
+//use key-Value config BackgroundColors
 5. [button hcb_configBackgroundColors:@{@(UIControlStateNormal) : [UIColor redColor], @(UIControlStateSelected) : [UIColor blueColor]}];
 ```
 
