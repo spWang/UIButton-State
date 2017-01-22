@@ -4,7 +4,7 @@
 <img src="https://github.com/spWang/UIButton-State/blob/master/demo.gif" width="375" height="667">
 
 ## <a id="如何使用"></a>如何使用
-* 安装CocoaPods：`pod 'UIButtonState'`
+* 安装CocoaPods：`pod 'UIButtonState','~>1.0.1'`
 * 文件拖拽：
 * 将UIButton+State文件夹的文件拖到你的项目中
 * 导入头文件：`#import "UIButton+HCBState.h"`
