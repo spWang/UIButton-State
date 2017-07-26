@@ -126,7 +126,6 @@
             button.layer.borderColor = color_red.CGColor;
             [button hcb_setborderWidth:3 forState:UIControlStateNormal animated:NO];
             [button hcb_setborderWidth:20 forState:UIControlStateSelected animated:NO];
-            [button hcb_setborderWidth:10 forState:UIControlStateHighlighted animated:NO];
             [button setTitle:@"borderWidth无动画" forState:UIControlStateNormal];
         }
             break;

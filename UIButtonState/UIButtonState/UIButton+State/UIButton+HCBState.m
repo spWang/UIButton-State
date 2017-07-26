@@ -236,15 +236,7 @@
     
     //updateBorderWidth
     CGFloat borderWidth = [self hcb_borderWidthForState:self.state];
-//    if (borderWidth) {
-        [self updateBorderWidth:borderWidth];
-//    } else {
-//        CGFloat normalWidth = [self hcb_borderWidthForState:UIControlStateNormal];
-//        if (normalWidth) {
-//            [self updateBorderColor:normalWidth];
-//        }
-//    }
-
+    [self updateBorderWidth:borderWidth];
     
     //updateTitleLabelFont
     UIFont *titleLabelFont = [self hcb_titleLabelFontForState:self.state];
@@ -290,7 +282,7 @@
     
     if (animateValue.integerValue == 0) {
         self.layer.borderColor = borderColor.CGColor;
-        [self.layer removeAnimationForKey:@"borderColorKEYAnimation"];
+        [self.layer removeAnimationForKey:@"borderColorAnimationKey"];
     }else {//等于1
         CABasicAnimation *animation = [CABasicAnimation animationWithKeyPath:@"borderColor"];
         animation.fromValue = (__bridge id _Nullable)(self.layer.borderColor);
@@ -298,7 +290,7 @@
         animation.duration = self.hcb_animatedDuration;
         animation.removedOnCompletion = NO;
         animation.fillMode = kCAFillModeForwards;
-        [self.layer addAnimation:animation forKey:@"borderColorKEYAnimation"];
+        [self.layer addAnimation:animation forKey:@"borderColorAnimationKey"];
         self.layer.borderColor = borderColor.CGColor;
     }
 }
@@ -309,7 +301,7 @@
     
     if (animateValue.integerValue == 0) {
         self.layer.borderWidth = borderWidth;
-        [self.layer removeAnimationForKey:@"borderWidthKEYAnimation"];
+        [self.layer removeAnimationForKey:@"borderWidthAnimationKey"];
     }else {//等于1
         CABasicAnimation *animation = [CABasicAnimation animationWithKeyPath:@"borderWidth"];
         animation.fromValue = @(self.layer.borderWidth);
@@ -317,7 +309,7 @@
         animation.duration = self.hcb_animatedDuration;
         animation.removedOnCompletion = NO;
         animation.fillMode = kCAFillModeForwards;
-        [self.layer addAnimation:animation forKey:@"borderWidthKEYAnimation"];
+        [self.layer addAnimation:animation forKey:@"borderWidthAnimationKey"];
         self.layer.borderWidth = borderWidth;
     }
 }

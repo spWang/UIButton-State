@@ -1,28 +1,34 @@
 # UIButton-State
-为按钮的backgroundColor、borderColor and titleLabelFont配置不同状态下的属性
+为按钮的backgroundColor、borderWidth borderColor and titleLabelFont配置不同状态下的属性
 
 <img src="https://github.com/spWang/UIButton-State/blob/master/demo.gif" width="375" height="667">
 
 ## <a id="如何使用"></a>如何使用
-* 安装CocoaPods：`pod 'UIButtonState','~>1.0.1'`
+* 安装CocoaPods：`pod 'UIButtonState','1.0.2'`
 * 文件拖拽：
 * 将UIButton+State文件夹的文件拖到你的项目中
 * 导入头文件：`#import "UIButton+HCBState.h"`
 
 ## <a id="UIButton+HCBState.h"></a>UIButton+HCBState.h
 ```objc
-@interface UIButton (HCBState)
 /** 获取当前borderColor */
 @property(nullable, nonatomic, readonly, strong) UIColor *hcb_currentBorderColor;
 
 /** 获取当前backgroundColor */
 @property(nullable, nonatomic, readonly, strong) UIColor *hcb_currentBackgroundColor;
 
+/** 获取当前borderWidth */
+@property (nonatomic, readonly, assign) CGFloat hcb_currentBorderWidth;
+
 /** 获取当前titleLabelFont */
 @property(nonatomic, readonly, strong) UIFont *hcb_currentTitleLabelFont;
 
-/** 设置不同状态下的borderColor(支持动画效果) */
+
+/** 设置不同状态下的borderColor(支持动画效果),需先设置borderWidth */
 - (void)hcb_setborderColor:(UIColor *)borderColor forState:(UIControlState)state animated:(BOOL)animated;
+
+/** 设置不同状态下的borderWidth(支持动画效果) */
+- (void)hcb_setborderWidth:(CGFloat)borderWidth forState:(UIControlState)state animated:(BOOL)animated;
 
 /** 设置不同状态下的backgroundColor(支持动画效果) */
 - (void)hcb_setBackgroundColor:(UIColor *)backgroundColor forState:(UIControlState)state animated:(BOOL)animated;
@@ -32,6 +38,9 @@
 
 /** 获取某个状态的borderColor */
 - (nullable UIColor *)hcb_borderColorForState:(UIControlState)state;
+
+/** 获取某个状态的borderWidth */
+- (CGFloat)hcb_borderWidthForState:(UIControlState)state;
 
 /** 获取某个状态的backgroundColor */
 - (nullable UIColor *)hcb_backgroundColorForState:(UIControlState)state;
@@ -45,7 +54,7 @@
 
 
 #pragma mark - 使用key-value方式设置
-/** key:需要将UIControlState枚举包装为NSNumber类型即可(此方式无动画) */
+/** key:需要将UIControlState枚举包装为NSNumber类型即可(此方式无动画),需先设置borderWidth */
 - (void)hcb_configBorderColors:(NSDictionary <NSNumber *,UIColor *>*)borderColors;
 
 /** key:需要将UIControlState枚举包装为NSNumber类型即可(此方式无动画) */
@@ -58,6 +67,7 @@
 /** 切换按钮状态时,执行动画的时间,默认0.25s(只有动画执行完毕后,才能会执行下一个点击事件) */
 @property (nonatomic, assign) NSTimeInterval hcb_animatedDuration;
 
+
 @end
 ```
 ## <a id="例子"></a>例子
@@ -69,14 +79,19 @@
 2. button.layer.borderWidth = 10;
 [button hcb_setborderColor:[UIColor purpleColor] forState:UIControlStateNormal animated:YES];
 
+//setborderWidth
+3. button.layer.borderColor = [UIColor redColor].CGColor;
+[button hcb_setborderWidth:3 forState:UIControlStateNormal animated:YES];
+[button hcb_setborderWidth:20 forState:UIControlStateSelected animated:YES];
+
 //setTitleLabelFont
-3. [button hcb_setTitleLabelFont:[UIFont systemFontOfSize:10] forState:UIControlStateNormal];
+4. [button hcb_setTitleLabelFont:[UIFont systemFontOfSize:10] forState:UIControlStateNormal];
 
 //配置SubView
-4. [button hcb_setSubViewValue:@(NSTextAlignmentLeft) forKeyPath:@"textAlignment" forState:UIControlStateNormal withSubViewTag:10001];
+5. [button hcb_setSubViewValue:@(NSTextAlignmentLeft) forKeyPath:@"textAlignment" forState:UIControlStateNormal withSubViewTag:10001];
 
 //使用key-Value方案来配置
-5. [button hcb_configBackgroundColors:@{@(UIControlStateNormal) : [UIColor redColor], @(UIControlStateSelected) : [UIColor blueColor]}];
+6. [button hcb_configBackgroundColors:@{@(UIControlStateNormal) : [UIColor redColor], @(UIControlStateSelected) : [UIColor blueColor]}];
 ```
 
 ## <a id="Remind"></a>Remind
@@ -89,11 +104,11 @@
 # for English
 
 # UIButton-State
-a easy way to config your button with different backgroundColor、borderColor and titleLabelFont
+a easy way to config your button with different backgroundColor、borderWidth borderColor and titleLabelFont
 
 ## <a id="How to use it"></a>How to use it
 ```objc
-* Installation with CocoaPods：`pod 'UIButtonState'`
+* Installation with CocoaPods：`pod 'UIButtonState','1.0.2'`
 * Manual import：
 * Drag All files in the `UIButton+State` folder to project
 * Import the file：`#import "UIButton+HCBState.h"`
@@ -114,6 +129,9 @@ a easy way to config your button with different backgroundColor、borderColor an
 /** setting borderColor for different state(support animation) */
 - (void)hcb_setborderColor:(UIColor *)borderColor forState:(UIControlState)state animated:(BOOL)animated;
 
+/** setting borderWidth for different state(support animation) */
+- (void)hcb_setborderWidth:(CGFloat)borderWidth forState:(UIControlState)state animated:(BOOL)animated;
+
 /** setting backgroundColor for different state(support animation) */
 - (void)hcb_setBackgroundColor:(UIColor *)backgroundColor forState:(UIControlState)state animated:(BOOL)animated;
 
@@ -122,6 +140,9 @@ a easy way to config your button with different backgroundColor、borderColor an
 
 /** get the borderColor for state */
 - (nullable UIColor *)hcb_borderColorForState:(UIControlState)state;
+
+/** get the borderWidth for state */
+- (CGFloat)hcb_borderWidthForState:(UIControlState)state;
 
 /** get the backgroundColor for state */
 - (nullable UIColor *)hcb_backgroundColorForState:(UIControlState)state;
@@ -159,14 +180,19 @@ a easy way to config your button with different backgroundColor、borderColor an
 2. button.layer.borderWidth = 10;
 [button hcb_setborderColor:[UIColor purpleColor] forState:UIControlStateNormal animated:YES];
 
+//setborderWidth
+3. button.layer.borderColor = [UIColor redColor].CGColor;
+[button hcb_setborderWidth:3 forState:UIControlStateNormal animated:YES];
+[button hcb_setborderWidth:20 forState:UIControlStateSelected animated:YES];
+
 //setTitleLabelFont
-3. [button hcb_setTitleLabelFont:[UIFont systemFontOfSize:10] forState:UIControlStateNormal];
+4. [button hcb_setTitleLabelFont:[UIFont systemFontOfSize:10] forState:UIControlStateNormal];
 
 //set SubView use key-Value 
-4. [button hcb_setSubViewValue:@(NSTextAlignmentLeft) forKeyPath:@"textAlignment" forState:UIControlStateNormal withSubViewTag:10001];
+5. [button hcb_setSubViewValue:@(NSTextAlignmentLeft) forKeyPath:@"textAlignment" forState:UIControlStateNormal withSubViewTag:10001];
 
 //use key-Value config BackgroundColors
-5. [button hcb_configBackgroundColors:@{@(UIControlStateNormal) : [UIColor redColor], @(UIControlStateSelected) : [UIColor blueColor]}];
+6. [button hcb_configBackgroundColors:@{@(UIControlStateNormal) : [UIColor redColor], @(UIControlStateSelected) : [UIColor blueColor]}];
 ```
 
 ## Remind

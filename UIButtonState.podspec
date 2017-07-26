@@ -1,6 +1,6 @@
 Pod::Spec.new do |s|
     s.name         = 'UIButtonState'
-    s.version      = '1.0.1'
+    s.version      = '1.0.2'
     s.summary      = 'An easy way to use config button state'
     s.homepage     = 'https://github.com/spWang/UIButton-State'
     s.license      = 'MIT'

@@ -5,7 +5,7 @@
 //  Created by wangshuaipeng on 16/9/9.
 //  gitHub https://github.com/spWang/UIButton-State
 //  Copyright © 2016年 Mac－pro. All rights reserved.
-//
+//  1.0.2
 
 #import <UIKit/UIKit.h>
 #import <Foundation/Foundation.h>
@@ -39,6 +39,9 @@ NS_ASSUME_NONNULL_BEGIN
 
 /** 获取某个状态的borderColor */
 - (nullable UIColor *)hcb_borderColorForState:(UIControlState)state;
+
+/** 获取某个状态的borderWidth */
+- (CGFloat)hcb_borderWidthForState:(UIControlState)state;
 
 /** 获取某个状态的backgroundColor */
 - (nullable UIColor *)hcb_backgroundColorForState:(UIControlState)state;
