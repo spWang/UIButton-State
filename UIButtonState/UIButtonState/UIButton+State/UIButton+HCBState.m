@@ -15,6 +15,7 @@
 
 #define backgroundColorKEY(state) [NSString stringWithFormat:@"backgroundColor%zd",state]
 #define borderColorKEY(state) [NSString stringWithFormat:@"borderColor%zd",state]
+#define borderWidthKEY(state) [NSString stringWithFormat:@"borderWidth%zd",state]
 
 #import "UIButton+HCBState.h"
 #import <objc/runtime.h>
@@ -41,6 +42,7 @@
 @interface UIButton ()
 @property (nonatomic, strong) NSMutableDictionary <NSString *, NSNumber *>*animates;
 @property (nonatomic, strong) NSMutableDictionary <NSNumber *, UIColor *>*borderColors;
+@property (nonatomic, strong) NSMutableDictionary <NSNumber *, NSNumber *>*borderWidths;
 @property (nonatomic, strong) NSMutableDictionary <NSNumber *, UIColor *>*backgroundColors;
 @property (nonatomic, strong) NSMutableDictionary <NSNumber *, UIFont *>*titleLabelFonts;
 @property (nonatomic, strong) NSMutableArray <HCBPropertyModel *>*subViewPropertyArr;
@@ -67,6 +69,14 @@
     return color;
 }
 
+- (CGFloat)hcb_currentBorderWidth {
+    CGFloat width = [self hcb_borderWidthForState:self.state-1];
+    if (!width) {
+        width = self.layer.borderWidth;
+    }
+    return width;
+}
+
 - (nullable UIColor *)hcb_currentBackgroundColor {
     UIColor *color = [self hcb_backgroundColorForState:self.state];
     if (!color) {
@@ -82,6 +92,7 @@
     }
     return font;
 }
+
 
 - (void)hcb_setBackgroundColor:(UIColor *)backgroundColor forState:(UIControlState)state animated:(BOOL)animated {
     if (backgroundColor) {
@@ -103,6 +114,16 @@
     }
 }
 
+- (void)hcb_setborderWidth:(CGFloat)borderWidth forState:(UIControlState)state animated:(BOOL)animated {
+    
+    [self.borderWidths setObject:@(borderWidth) forKey:@(state)];
+    [self.animates setObject:@(animated) forKey:borderWidthKEY(state)];
+    
+    if(self.state == state) {
+        self.layer.borderWidth = borderWidth;
+    }
+}
+
 - (void)hcb_setTitleLabelFont:(UIFont *)titleLabelFont forState:(UIControlState)state {
     if (titleLabelFont) {
         [self.titleLabelFonts setObject:titleLabelFont forKey:@(state)];
@@ -114,6 +135,14 @@
 
 - (nullable UIColor *)hcb_borderColorForState:(UIControlState)state {
     return [self.borderColors objectForKey:@(state)];
+}
+
+- (CGFloat)hcb_borderWidthForState:(UIControlState)state {
+#if defined(__LP64__) && __LP64__
+    return [[self.borderWidths objectForKey:@(state)] doubleValue];
+#else
+    return [[self.borderWidths objectForKey:@(state)] floatValue];
+#endif
 }
 
 - (nullable UIColor *)hcb_backgroundColorForState:(UIControlState)state {
@@ -205,6 +234,18 @@
         }
     }
     
+    //updateBorderWidth
+    CGFloat borderWidth = [self hcb_borderWidthForState:self.state];
+//    if (borderWidth) {
+        [self updateBorderWidth:borderWidth];
+//    } else {
+//        CGFloat normalWidth = [self hcb_borderWidthForState:UIControlStateNormal];
+//        if (normalWidth) {
+//            [self updateBorderColor:normalWidth];
+//        }
+//    }
+
+    
     //updateTitleLabelFont
     UIFont *titleLabelFont = [self hcb_titleLabelFontForState:self.state];
     if (titleLabelFont) {
@@ -249,7 +290,7 @@
     
     if (animateValue.integerValue == 0) {
         self.layer.borderColor = borderColor.CGColor;
-        [self.layer removeAnimationForKey:@"KEYAnimation"];
+        [self.layer removeAnimationForKey:@"borderColorKEYAnimation"];
     }else {//等于1
         CABasicAnimation *animation = [CABasicAnimation animationWithKeyPath:@"borderColor"];
         animation.fromValue = (__bridge id _Nullable)(self.layer.borderColor);
@@ -257,8 +298,27 @@
         animation.duration = self.hcb_animatedDuration;
         animation.removedOnCompletion = NO;
         animation.fillMode = kCAFillModeForwards;
-        [self.layer addAnimation:animation forKey:@"KEYAnimation"];
+        [self.layer addAnimation:animation forKey:@"borderColorKEYAnimation"];
         self.layer.borderColor = borderColor.CGColor;
+    }
+}
+
+- (void)updateBorderWidth:(CGFloat)borderWidth {
+    NSNumber *animateValue = [self.animates objectForKey:borderWidthKEY(self.state)];
+    if (!animateValue) return;//不存在
+    
+    if (animateValue.integerValue == 0) {
+        self.layer.borderWidth = borderWidth;
+        [self.layer removeAnimationForKey:@"borderWidthKEYAnimation"];
+    }else {//等于1
+        CABasicAnimation *animation = [CABasicAnimation animationWithKeyPath:@"borderWidth"];
+        animation.fromValue = @(self.layer.borderWidth);
+        animation.toValue = @(borderWidth);
+        animation.duration = self.hcb_animatedDuration;
+        animation.removedOnCompletion = NO;
+        animation.fillMode = kCAFillModeForwards;
+        [self.layer addAnimation:animation forKey:@"borderWidthKEYAnimation"];
+        self.layer.borderWidth = borderWidth;
     }
 }
 
@@ -287,6 +347,20 @@
         self.borderColors = borderColors;
     }
     return borderColors;
+}
+
+- (void)setBorderWidths:(NSMutableDictionary<NSNumber *,NSNumber *> *)borderWidths {
+    objc_setObjRETAIN(@selector(borderWidths), borderWidths);
+
+}
+- (NSMutableDictionary<NSNumber *,NSNumber *> *)borderWidths {
+
+    NSMutableDictionary *borderWidths = objc_getObj(@selector(borderWidths));
+    if (!borderWidths) {
+        borderWidths = [NSMutableDictionary new];
+        self.borderWidths = borderWidths;
+    }
+    return borderWidths;
 }
 
 - (void)setBackgroundColors:(NSMutableDictionary *)backgroundColors {

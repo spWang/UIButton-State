@@ -14,6 +14,7 @@
 		DA4875E51DB0B87700422A20 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = DA4875E41DB0B87700422A20 /* Assets.xcassets */; };
 		DA4875E81DB0B87700422A20 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DA4875E61DB0B87700422A20 /* LaunchScreen.storyboard */; };
 		DA4875F21DB0BAF600422A20 /* UIButton+HCBState.m in Sources */ = {isa = PBXBuildFile; fileRef = DA4875F11DB0BAF600422A20 /* UIButton+HCBState.m */; };
+		DAF3D2EA1F27568E0056568E /* UIColor+Hex.m in Sources */ = {isa = PBXBuildFile; fileRef = DAF3D2E91F27568E0056568E /* UIColor+Hex.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -29,6 +30,9 @@
 		DA4875E91DB0B87700422A20 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		DA4875F01DB0BAF600422A20 /* UIButton+HCBState.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIButton+HCBState.h"; sourceTree = "<group>"; };
 		DA4875F11DB0BAF600422A20 /* UIButton+HCBState.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIButton+HCBState.m"; sourceTree = "<group>"; };
+		DAF3D2E81F27568E0056568E /* UIColor+Hex.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIColor+Hex.h"; sourceTree = "<group>"; };
+		DAF3D2E91F27568E0056568E /* UIColor+Hex.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIColor+Hex.m"; sourceTree = "<group>"; };
+		DAF3D2EB1F2756C80056568E /* ColorConfig.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ColorConfig.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -66,6 +70,9 @@
 				DA4875DC1DB0B87700422A20 /* AppDelegate.m */,
 				DA4875DE1DB0B87700422A20 /* ViewController.h */,
 				DA4875DF1DB0B87700422A20 /* ViewController.m */,
+				DAF3D2EB1F2756C80056568E /* ColorConfig.h */,
+				DAF3D2E81F27568E0056568E /* UIColor+Hex.h */,
+				DAF3D2E91F27568E0056568E /* UIColor+Hex.m */,
 				DA4875E11DB0B87700422A20 /* Main.storyboard */,
 				DA4875E41DB0B87700422A20 /* Assets.xcassets */,
 				DA4875E61DB0B87700422A20 /* LaunchScreen.storyboard */,
@@ -165,6 +172,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				DA4875E01DB0B87700422A20 /* ViewController.m in Sources */,
+				DAF3D2EA1F27568E0056568E /* UIColor+Hex.m in Sources */,
 				DA4875F21DB0BAF600422A20 /* UIButton+HCBState.m in Sources */,
 				DA4875DD1DB0B87700422A20 /* AppDelegate.m in Sources */,
 				DA4875DA1DB0B87700422A20 /* main.m in Sources */,

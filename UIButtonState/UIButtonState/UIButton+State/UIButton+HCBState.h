@@ -18,11 +18,18 @@ NS_ASSUME_NONNULL_BEGIN
 /** 获取当前backgroundColor */
 @property(nullable, nonatomic, readonly, strong) UIColor *hcb_currentBackgroundColor;
 
+/** 获取当前borderWidth */
+@property (nonatomic, readonly, assign) CGFloat hcb_currentBorderWidth;
+
 /** 获取当前titleLabelFont */
 @property(nonatomic, readonly, strong) UIFont *hcb_currentTitleLabelFont;
 
-/** 设置不同状态下的borderColor(支持动画效果) */
+
+/** 设置不同状态下的borderColor(支持动画效果),需先设置borderWidth */
 - (void)hcb_setborderColor:(UIColor *)borderColor forState:(UIControlState)state animated:(BOOL)animated;
+
+/** 设置不同状态下的borderWidth(支持动画效果) */
+- (void)hcb_setborderWidth:(CGFloat)borderWidth forState:(UIControlState)state animated:(BOOL)animated;
 
 /** 设置不同状态下的backgroundColor(支持动画效果) */
 - (void)hcb_setBackgroundColor:(UIColor *)backgroundColor forState:(UIControlState)state animated:(BOOL)animated;
@@ -45,7 +52,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 
 #pragma mark - 使用key-value方式设置
-/** key:需要将UIControlState枚举包装为NSNumber类型即可(此方式无动画) */
+/** key:需要将UIControlState枚举包装为NSNumber类型即可(此方式无动画),需先设置borderWidth */
 - (void)hcb_configBorderColors:(NSDictionary <NSNumber *,UIColor *>*)borderColors;
 
 /** key:需要将UIControlState枚举包装为NSNumber类型即可(此方式无动画) */

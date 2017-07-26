@@ -9,12 +9,13 @@
 
 #import "ViewController.h"
 #import "UIButton+HCBState.h"
+#import "ColorConfig.h"
 
 #define ScreenWidth    [[UIScreen mainScreen] bounds].size.width
 
 
 @interface ViewController ()
-@property (nonatomic, strong)   UIButton *button;
+
 @end
 
 @implementation ViewController
@@ -31,7 +32,7 @@
     CGFloat margin = 10;
 
     //多个按钮
-    for (int i =0; i<9;i++) {
+    for (int i =0; i<11;i++) {
         UIButton *button =[self hcb_button];
         [self.view addSubview:button];
         button.tag = i;
@@ -66,16 +67,16 @@
 - (void)configButton:(UIButton *)button {
     switch (button.tag) {
         case 0: {
-            [button hcb_setBackgroundColor:[UIColor redColor] forState:UIControlStateNormal animated:YES];
-            [button hcb_setBackgroundColor:[UIColor blueColor] forState:UIControlStateSelected animated:YES];
+            [button hcb_setBackgroundColor:color_red forState:UIControlStateNormal animated:YES];
+            [button hcb_setBackgroundColor:color_skyblue forState:UIControlStateSelected animated:YES];
             [button setTitle:@"背景颜色有动画" forState:UIControlStateNormal];
             button.hcb_animatedDuration = 0.5;
         }
             break;
             
         case 1: {
-            [button hcb_setBackgroundColor:[UIColor redColor] forState:UIControlStateNormal animated:NO];
-            [button hcb_setBackgroundColor:[UIColor blueColor] forState:UIControlStateSelected animated:NO];
+            [button hcb_setBackgroundColor:color_red forState:UIControlStateNormal animated:NO];
+            [button hcb_setBackgroundColor:color_skyblue forState:UIControlStateSelected animated:NO];
             [button setTitle:@"背景颜色无动画" forState:UIControlStateNormal];
 
         }
@@ -84,7 +85,7 @@
         case 2: {
             button.layer.borderWidth = 10;
             [button hcb_setborderColor:[UIColor purpleColor] forState:UIControlStateNormal animated:YES];
-            [button hcb_setborderColor:[UIColor yellowColor] forState:UIControlStateSelected animated:YES];
+            [button hcb_setborderColor:color_yellow forState:UIControlStateSelected animated:YES];
             [button setTitle:@"borderColor有动画" forState:UIControlStateNormal];
         }
             break;
@@ -92,7 +93,7 @@
         case 3: {
             button.layer.borderWidth = 10;
             [button hcb_setborderColor:[UIColor purpleColor] forState:UIControlStateNormal animated:NO];
-            [button hcb_setborderColor:[UIColor yellowColor] forState:UIControlStateSelected animated:NO];
+            [button hcb_setborderColor:color_yellow forState:UIControlStateSelected animated:NO];
             [button setTitle:@"borderColor无动画" forState:UIControlStateNormal];
         }
             break;
@@ -109,30 +110,47 @@
             [button hcb_setSubViewValue:@(NSTextAlignmentRight) forKeyPath:@"textAlignment" forState:UIControlStateSelected withSubViewTag:10001];
             [button hcb_setSubViewValue:@"子View(左)" forKeyPath:@"text" forState:UIControlStateNormal withSubViewTag:10001];
             [button hcb_setSubViewValue:@"子View(右)" forKeyPath:@"text" forState:UIControlStateSelected withSubViewTag:10001];
-            [button hcb_setSubViewValue:[UIColor blueColor] forKeyPath:@"backgroundColor" forState:UIControlStateNormal withSubViewTag:10001];
+            [button hcb_setSubViewValue:color_skyblue forKeyPath:@"backgroundColor" forState:UIControlStateNormal withSubViewTag:10001];
             [button hcb_setSubViewValue:nil forKeyPath:@"backgroundColor" forState:UIControlStateSelected withSubViewTag:10001];
         }
             break;
-            
         case 6: {
-            [button hcb_configBackgroundColors:@{@(UIControlStateNormal) : [UIColor redColor], @(UIControlStateSelected) : [UIColor blueColor]}];
+            button.layer.borderColor = color_red.CGColor;
+            [button hcb_setborderWidth:3 forState:UIControlStateNormal animated:YES];
+            [button hcb_setborderWidth:20 forState:UIControlStateSelected animated:YES];
+            [button setTitle:@"borderWidth有动画" forState:UIControlStateNormal];
+        }
+            break;
+            
+        case 7: {
+            button.layer.borderColor = color_red.CGColor;
+            [button hcb_setborderWidth:3 forState:UIControlStateNormal animated:NO];
+            [button hcb_setborderWidth:20 forState:UIControlStateSelected animated:NO];
+            [button hcb_setborderWidth:10 forState:UIControlStateHighlighted animated:NO];
+            [button setTitle:@"borderWidth无动画" forState:UIControlStateNormal];
+        }
+            break;
+            
+        case 8: {
+            [button hcb_configBackgroundColors:@{@(UIControlStateNormal) : color_red, @(UIControlStateSelected) : color_skyblue}];
             [button setTitle:@"key-value方式配置" forState:UIControlStateNormal];
         }
             break;
         
-        case 7: {
+        case 9: {
             button.layer.borderWidth = 10;
-            [button hcb_configBorderColors:@{@(UIControlStateNormal) : [UIColor purpleColor], @(UIControlStateSelected) : [UIColor yellowColor]}];
+            [button hcb_configBorderColors:@{@(UIControlStateNormal) : [UIColor purpleColor], @(UIControlStateSelected) : color_yellow}];
             [button setTitle:@"key-value方式配置" forState:UIControlStateNormal];
         }
             break;
 
-        case 8: {
+        case 10: {
             [button hcb_configTitleLabelFont:@{@(UIControlStateNormal) : [UIFont systemFontOfSize:10], @(UIControlStateSelected) : [UIFont systemFontOfSize:16]}];
             [button setTitle:@"key-value方式配置" forState:UIControlStateNormal];
         }
             break;
             
+
         default:
             break;
     }
@@ -150,7 +168,7 @@
     lbl.text = @"子View";
     lbl.font = [UIFont systemFontOfSize:10];
     lbl.textAlignment = NSTextAlignmentCenter;
-    lbl.backgroundColor = [UIColor blackColor];
+    lbl.backgroundColor = color_black;
     lbl.textColor = [UIColor whiteColor];
     lbl.layer.masksToBounds = YES;
     lbl.layer.cornerRadius = 3;
@@ -160,8 +178,8 @@
 
 - (UIButton *)hcb_button {
     UIButton *button =[UIButton buttonWithType:UIButtonTypeCustom];
-    button.backgroundColor = [UIColor darkGrayColor];
-    button.titleLabel.font = [UIFont systemFontOfSize:10];
+    button.backgroundColor = color_lightGray;
+    button.titleLabel.font = [UIFont systemFontOfSize:11];
     button.layer.masksToBounds = YES;
     button.layer.cornerRadius = 5;
     return button;
